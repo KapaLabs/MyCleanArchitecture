@@ -17,8 +17,7 @@ namespace Self.CleanArchitecture.Usecase
     
     public record CountryGWPResult
     {
-        public IEnumerable<(string Business, decimal GrossRevenue)> BusinessesRevenues { get; set; }
-
+        public List<(string Business, decimal GrossRevenue)> BusinessesRevenues { get; } = new();
     }
 
     public class CountryGWPQueryHandler : IRequestHandler<CountryGWPQuery, CountryGWPResult>
@@ -35,9 +34,13 @@ namespace Self.CleanArchitecture.Usecase
             if (request.BeginYear > request.EndYear)
                 throw new DataMisalignedException("Time period incorrect for request");
 
-            var businesscases = _readRepository.CountryBusinessRevenue.Where(item => item.Year >= request.BeginYear && item.Year <= request.EndYear && item.CountryName == request.Country).Where(item => request.Business.Contains(item.BusinessName));
             CountryGWPResult result = new CountryGWPResult();
-            // mapping to result penidng
+            var businesses = _readRepository.CountryBusiness.Where(item => item.CountryName.Trim() == request.Country && request.Business.Contains(item.BusinessName.Trim()));
+            foreach (var business in businesses)
+            {
+                decimal businessAverageRevenue = _readRepository.BusinessRevenue.Where(item => item.BusinessId == business.BusinessId && item.Year >= request.BeginYear && item.Year <= request.EndYear).Average(item => item.Value);
+                result.BusinessesRevenues.Add(new (business.BusinessName, businessAverageRevenue));
+            }            
            return result;
         }
     }

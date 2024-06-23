@@ -2,12 +2,10 @@
 
 namespace Self.CleanArchitecture.Web.Controllers.Contributors
 {
-    public record GetCountryGwpResponse((string Business, decimal GrossRevenue)[] usinessesRevenue)
+    public record GetCountryGwpResponse(string business, decimal grossRevenue)
     {
-        public (string Business, decimal GrossRevenue)[] BusinessesRevenue { get; set; }
+        string Business { get; init; } = business;
+        decimal GrossRevenue { get; init; } = grossRevenue;
 
     }
-
-
-
 }

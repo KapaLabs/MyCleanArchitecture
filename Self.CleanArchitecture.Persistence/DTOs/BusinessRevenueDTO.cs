@@ -7,12 +7,11 @@ using System.Threading.Tasks;
 
 namespace Self.CleanArchitecture.Persistence
 {
-    public class CountryGwp : ICountryGwp
+    public class BusinessRevenueDTO : IRevenue
     {
-        public string CountryName { get; set; }
-        public string VariableId { get; set; }
-        public string BusinessName { get; set; }
+        public Guid ReveneId { get; set; }
+        public Guid BusinessId { get; set; }
         public int Year { get; set; }
-        public float Value { get; set; }
+        public decimal Value { get; set; }
     }
 }

@@ -9,7 +9,7 @@ namespace Self.CleanArchitecture.Web
     {
         public static IServiceCollection AddApplicationServices(this IServiceCollection services)
         {
-            services.AddSingleton<IReadRepository, ApplicaitonDbContext>();
+            services.AddSingleton<IReadRepository, CSVFileDataStore>();
              var mediatRAssemblies = new[]
 {
   Assembly.GetAssembly(typeof(CountryGWPQuery)), // UseCases, 

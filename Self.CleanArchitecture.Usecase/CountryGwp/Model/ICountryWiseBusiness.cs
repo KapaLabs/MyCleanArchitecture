@@ -6,12 +6,10 @@ using System.Threading.Tasks;
 
 namespace Self.CleanArchitecture.Usecase
 {
-    public interface ICountryGwp
+    public interface ICountryWiseBusiness
     {
         public string CountryName { get; set; }
-        public string VariableId { get; set; }
-        public string BusinessName { get; set; }
-        public int Year { get; set; }
-        public float Value { get; set; }
-    }
+        public string BusinessName { get; set; } 
+        public Guid BusinessId { get; set; }
+    }   
 }

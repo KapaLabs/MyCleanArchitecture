@@ -9,6 +9,7 @@ namespace Self.CleanArchitecture.Usecase
 {
     public interface IReadRepository
     {
-        IQueryable<ICountryGwp> CountryBusinessRevenue { get;}
+        IQueryable<ICountryWiseBusiness> CountryBusiness { get;}
+        IQueryable<IRevenue> BusinessRevenue { get; }
     }
 }
